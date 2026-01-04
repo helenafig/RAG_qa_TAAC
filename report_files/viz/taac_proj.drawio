@@ -1,0 +1,431 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.2.9" pages="6">
+  <diagram name="prompts" id="MBMS-SLCVMDvH8HmaDvy">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6HC7TBGwcLH2aAgILvhm-2" parent="1" style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=bottom;rounded=0;fontFamily=Courier New;strokeColor=default;spacingLeft=4;spacingRight=4;" value="&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&quot;&quot;&quot;You are a strict logical reasoning assistant. Your task is to verify if a Statement is factually supported by the provided Context.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Context:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;{context}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Statement:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;{query}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Instructions:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;1. Analyze the Statement and the Context step-by-step.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;2. Determine if the Statement is &quot;True&quot; (supported) or &quot;False&quot; (contradicted or not mentioned).&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;3. Output your response in valid JSON format with two keys: &quot;reasoning&quot; and &quot;label&quot;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;4. The &quot;label&quot; must be exactly &quot;True&quot; or &quot;False&quot;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;5. Do not output any text outside the JSON object.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Example Format:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;{{&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&amp;nbsp; &amp;nbsp; &quot;reasoning&quot;: &quot;The context states X, which aligns with the statement claiming X...&quot;,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&amp;nbsp; &amp;nbsp; &quot;label&quot;: &quot;True&quot;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;}}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Output:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="409" width="644" x="16" y="381" as="geometry" />
+        </mxCell>
+        <mxCell id="6HC7TBGwcLH2aAgILvhm-5" parent="1" style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=bottom;rounded=0;fontFamily=Courier New;strokeColor=default;spacingLeft=4;spacingRight=4;" value="&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&quot;&quot;&quot;You are a strict verification assistant. Your task is to determine if the following [Statement] is correct.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Instructions:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;1. Analyze the Statement step-by-step.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;2. Determine if the Statement is &quot;True&quot; or &quot;False&quot;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;3. Output your response in valid JSON format with two keys: &quot;reasoning&quot; and &quot;label&quot;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;4. The &quot;label&quot; must be exactly &quot;True&quot; or &quot;False&quot;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;5. Do not output any text outside the JSON object.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Example Format:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;{{&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&amp;nbsp; &amp;nbsp; &quot;reasoning&quot;: &quot;States claims X, which is valid because...&quot;,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&amp;nbsp; &amp;nbsp; &quot;label&quot;: &quot;True&quot;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;}}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Statement:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;{query}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Output (True/False):&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="347" width="644" x="16" y="16" as="geometry" />
+        </mxCell>
+        <mxCell id="6HC7TBGwcLH2aAgILvhm-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#333333;fontStyle=1;fontFamily=Helvetica;" value="A. Prompt without context" vertex="1">
+          <mxGeometry height="30" width="644" x="16" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="6HC7TBGwcLH2aAgILvhm-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#333333;fontStyle=1" value="B. Prompt with context" vertex="1">
+          <mxGeometry height="30" width="644" x="16" y="381" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="RRQmSNVcpz4yNVctKz6k" name="corpus_examples">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="38khc8e4kZ_DTQO7foF4-1" parent="1" style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;rounded=0;fontStyle=2;strokeColor=default;spacingLeft=4;spacingRight=4;spacing=4;" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&quot;Here we show that activation of ORX-synthesizing neurons is necessary for developing a panic-prone state in the rat panic model, and either silencing of the hypothalamic gene encoding ORX (Hcrt) with RNAi or systemic ORX-1 receptor antagonists blocks the panic responses.&quot;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&quot;Thus, we uncover a shared genetic contribution to prognosis in distinct diseases that operates via a FOXO3-driven pathway modulating inflammatory responses.&quot;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&quot;There was no association between anxiety and exposure to PM2.5-10.&quot;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&amp;nbsp;&quot;For men, taking the Polymeal daily represented an increase in total life expectancy of 6.6 years, an increase in life expectancy free from cardiovascular disease of 9.0 years, and a decrease in life expectancy with cardiovascular disease of 2.4 years.&quot;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="192" width="756" x="16" y="16" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="wf7EwVhftq9ic_w4eJeV" name="llm_retrieval_example">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#EEF6FF;align=center;verticalAlign=top;rounded=0;spacing=2;spacingLeft=5;spacingRight=5;spacingBottom=2;" value="&lt;b&gt;Query (Statement):&amp;nbsp;&lt;/b&gt;&quot;CX3CR1 on the Th2 cells promotes airway inflammation.&quot;" vertex="1">
+          <mxGeometry height="480" width="1530" as="geometry" />
+        </mxCell>
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=default;align=center;verticalAlign=bottom;rounded=0;spacing=2;spacingLeft=-11;spacingRight=5;spacingBottom=-4;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;Contexts:&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&quot;Transfer of WT CD4(+) T cells into CX3CR1-deficient mice restored the cardinal features of asthma, and CX3CR1-blocking reagents prevented airway inflammation in CX3CR1-deficient recipients injected with WT T(H)2 cells.&quot;&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&quot;Here we found that untreated CX3CR1-deficient mice or wild-type (WT) mice treated with CX3CR1-blocking reagents show reduced lung disease upon allergen sensitization and challenge.&quot;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&quot;CX3CR1-induced survival was also observed for T(H)1 cells upon airway inflammation but not under homeostatic conditions or upon peripheral inflammation.&quot;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="300" width="460" x="10" y="161" as="geometry" />
+        </mxCell>
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=default;align=center;verticalAlign=bottom;rounded=0;spacing=2;spacingLeft=5;spacingRight=5;spacingBottom=2;" value="&lt;div&gt;&lt;b&gt;Label:&lt;/b&gt;&amp;nbsp;False&lt;/div&gt;&lt;div&gt;&lt;b&gt;Reasoning:&amp;nbsp;&lt;/b&gt;The statement claims that CX3CR1 on Th2 cells promotes airway inflammation. While CX3CR1 is known to play a role in immune responses, its specific effect on promoting airway inflammation in the context of Th2 cells requires supporting evidence which is not provided here.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="460" x="11" y="31" as="geometry" />
+        </mxCell>
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#333333;fontStyle=1;fontFamily=Helvetica;" value="Oracle" vertex="1">
+          <mxGeometry height="30" width="459.5" x="10.5" y="161" as="geometry" />
+        </mxCell>
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#333333;fontStyle=1;fontFamily=Helvetica;" value="Baseline" vertex="1">
+          <mxGeometry height="30" width="459.5" x="11.5" y="31" as="geometry" />
+        </mxCell>
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=default;align=center;verticalAlign=bottom;rounded=0;spacing=2;spacingLeft=-11;spacingRight=11;spacingBottom=-5;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Context(s):&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;&quot;&gt;&lt;ul&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;color: rgb(0, 102, 0);&quot;&gt;&quot;Transfer of WT CD4(+) T cells into CX3CR1-deficient mice restored the cardinal features of asthma, and CX3CR1-blocking reagents prevented airway inflammation in CX3CR1-deficient recipients injected with WT T(H)2 cells.&quot;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&quot;We found that CX3CR1 signaling promoted T(H)2 survival in the inflamed lungs, and injection of B cell leukemia/lymphoma-2 protein (BCl-2)-transduced CX3CR1-deficient T(H)2 cells into CX3CR1-deficient mice restored asthma.&quot;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&quot;Moreover, induction of AML was suppressed in CSF1R-deficient mice and CSF1R inhibitors slowed the progression of MOZ-TIF2–induced leukemia.&quot;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&quot;HighlightsT cell activation increased the expression of Satb1 in mature CD8+ and CD4+ T cellsRecruitment of the NuRD repression complex by Satb1 inhibits expression of Pdcd1In tumors, TGF‐&amp;amp;bgr; inhibits Satb1 expression in T cells, increasing Pdcd1 expressionSatb1−/− T cells express high amounts of PD‐1 and have decreased anti‐tumor activity &amp;amp;NA; Stephen et al. show that the chromatin organizer Satb1 controls expression levels of PD‐1 upon T cell activation through the recruitment of a de‐acetylase complex to regulatory regions of the Pdcd1 gene.&quot;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&quot;We demonstrated that the presence of an autoimmune disease-associated IL2RA haplotype correlates with diminished IL-2 responsiveness in Ag-experienced CD4(+) T cells, as measured by phosphorylation of STAT5a, and is associated with lower levels of FOXP3 expression by Tregs and a reduction in their ability to suppress proliferation of autologous effector T cells.&quot;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="440" width="549.5" x="480.5" y="31" as="geometry" />
+        </mxCell>
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#333333;fontStyle=1;fontFamily=Helvetica;" value="DPR" vertex="1">
+          <mxGeometry height="30" width="550" x="480" y="31" as="geometry" />
+        </mxCell>
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=default;align=center;verticalAlign=bottom;rounded=0;spacing=2;spacingLeft=-11;spacingRight=5;spacingBottom=-5;" value="&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Context(s):&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;color: rgb(0, 102, 0);&quot;&gt;&quot;Transfer of WT CD4(+) T cells into CX3CR1-deficient mice restored the cardinal features of asthma, and CX3CR1-blocking reagents prevented airway inflammation in CX3CR1-deficient recipients injected with WT T(H)2 cells.&quot;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&quot;We found that CX3CR1 signaling promoted T(H)2 survival in the inflamed lungs, and injection of B cell leukemia/lymphoma-2 protein (BCl-2)-transduced CX3CR1-deficient T(H)2 cells into CX3CR1-deficient mice restored asthma.&quot;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&quot;In people with asthma, a fraction of CD4(+) T cells express the CX3CL1 receptor, CX3CR1, and CX3CL1 expression is increased in airway smooth muscle, lung endothelium and epithelium upon allergen challenge.&quot;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&quot;Mitochondrial iron chelation also alleviated CS-induced impairment of MCC, CS-induced pulmonary inflammation and CS-associated lung injury in mice with established COPD, suggesting a critical functional role and potential therapeutic intervention for the mitochondrial-iron axis in COPD.&quot;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&quot;Treatment with exogenous PDGF-BB or inhibition of cathepsin K to increase the number of preosteoclasts, and thus the endogenous levels of PDGF-BB, increases CD31hiEmcnhi vessel number and stimulates bone formation in OVX mice.&quot;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="400" width="480.5" x="1040" y="31" as="geometry" />
+        </mxCell>
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#333333;fontStyle=1;fontFamily=Helvetica;" value="DPR with Reranker" vertex="1">
+          <mxGeometry height="30" width="480.5" x="1040" y="31" as="geometry" />
+        </mxCell>
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-10" parent="1" style="text;whiteSpace=wrap;html=1;labelBackgroundColor=default;" value="&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;b style=&quot;forced-color-adjust: none;&quot;&gt;Label:&amp;nbsp;&lt;/b&gt;True&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;b style=&quot;forced-color-adjust: none;&quot;&gt;Reasoning:&amp;nbsp;&lt;/b&gt;The context indicates that CX3CR1-blocking reagents prevented airway inflammation in CX3CR1-deficient recipients injected with WT T(H)2 cells. This implies that CX3CR1 on Th2 cells may be involved in promoting airway inflammation.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="440" x="21.25" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-11" parent="1" style="text;whiteSpace=wrap;html=1;labelBackgroundColor=default;" value="&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;div style=&quot;forced-color-adjust: none;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;b&gt;Label: &lt;/b&gt;True&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;b&gt;Reasoning: &lt;/b&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;The context mentions that CX3CR1 signaling promoted T(H)2 survival in the inflamed lungs and that injection of Bcl-2-transduced CX3CR1-deficient Th2 cells into CX3CR1-deficient mice restored asthma. This suggests a role for CX3CR1 on Th2 cells in promoting airway inflammation.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-weight: 400;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="460" x="1050" y="64" as="geometry" />
+        </mxCell>
+        <mxCell id="DOAoKtQaCkzLxcGmHrJ0-12" parent="1" style="text;whiteSpace=wrap;html=1;labelBackgroundColor=default;" value="&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;b style=&quot;forced-color-adjust: none;&quot;&gt;Label:&amp;nbsp;&lt;/b&gt;True&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;b style=&quot;forced-color-adjust: none;&quot;&gt;&lt;span style=&quot;forced-color-adjust: none; white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;Reasoning:&amp;nbsp;&lt;/b&gt;The context mentions that CX3CR1 signaling promotes T(H)2 survival in&amp;nbsp; &amp;nbsp;&lt;span style=&quot;forced-color-adjust: none; white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;the inflamed lungs and injection of Bcl-2-transduced CX3CR1-deficient TH2 cells into&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;forced-color-adjust: none; white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&amp;nbsp;CX3CR1-deficient mice restored asthma, suggesting a role for CX3CR1 on Th2 cells in promoting airway inflammation.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="520" x="495.25" y="67" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="llm_retrieval_example_2" id="EixFT6mx5CNvZHWkxOMc">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="Dh3GXK-rQ31At9WoxYu5-0" />
+        <mxCell id="Dh3GXK-rQ31At9WoxYu5-1" parent="Dh3GXK-rQ31At9WoxYu5-0" />
+        <mxCell id="Dh3GXK-rQ31At9WoxYu5-2" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#EEF6FF;align=center;verticalAlign=top;rounded=0;spacing=2;spacingLeft=5;spacingRight=5;spacingBottom=2;" value="&lt;b&gt;Query (Statement): &lt;/b&gt;&quot;Leuko-reduced blood reduces infectious complications in red blood cell transfusion.&quot;" vertex="1">
+          <mxGeometry height="480" width="1530" as="geometry" />
+        </mxCell>
+        <mxCell id="Dh3GXK-rQ31At9WoxYu5-4" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=default;align=center;verticalAlign=bottom;rounded=0;spacing=2;spacingLeft=5;spacingRight=5;spacingBottom=2;" value="&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;Label: &lt;/b&gt;True&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;Reasoning:&lt;/b&gt; The statement is true. Leukoreduced blood has reduced white blood cells, specifically the lymphocytes that can trigger immune reactions and contribute to infections in recipients with a history of alloantibodies or who are immunocompromised.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="460" x="10.5" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Dh3GXK-rQ31At9WoxYu5-5" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#333333;fontStyle=1;fontFamily=Helvetica;" value="Baseline" vertex="1">
+          <mxGeometry height="30" width="459.5" x="10" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Dh3GXK-rQ31At9WoxYu5-6" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=default;align=center;verticalAlign=bottom;rounded=0;spacing=2;spacingLeft=-11;spacingRight=5;spacingBottom=-4;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;Contexts:&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;The frequency of posttransfusion fevers decreased significantly following leukoreduction (adjusted OR, 0.86; 95% CI, 0.79-0.94), as did antibiotic use (adjusted OR, 0.90; 95% CI, 0.82-0.99).&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Compared with the control period, the adjusted odds of death following leukoreduction were reduced (odds ratio [OR], 0.87; 95% confidence interval [CI], 0.75-0.99), but serious nosocomial infections did not decrease (adjusted OR, 0.97; 95% CI, 0.87-1.09).&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;CONCLUSION A national universal leukoreduction program is potentially associated with decreased mortality as well as decreased fever episodes and antibiotic use after red blood cell transfusion in high-risk patients.&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="290" width="460" x="9.5" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Dh3GXK-rQ31At9WoxYu5-7" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#333333;fontStyle=1;fontFamily=Helvetica;" value="Baseline" vertex="1">
+          <mxGeometry height="30" width="459.5" x="11" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Dh3GXK-rQ31At9WoxYu5-8" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=default;align=center;verticalAlign=bottom;rounded=0;spacing=2;spacingLeft=-11;spacingRight=11;spacingBottom=-5;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Contexts:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;&quot;&gt;&lt;ul&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Orlistat reduced the incidence of diabetes and improved concentrations of total cholesterol and low density lipoprotein cholesterol, blood pressure, and glycaemic control in patients with diabetes but increased rates of gastrointestinal side effects and slightly lowered concentrations of high density lipoprotein.&lt;/span&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Compared with diastolic blood pressure, raised systolic blood pressure had a greater effect on angina, myocardial infarction, and peripheral arterial disease, whereas raised diastolic blood pressure had a greater effect on abdominal aortic aneurysm than did raised systolic pressure.&lt;/span&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;After conservative treatment of cervical pre-cancer, HPV testing picks up more quickly, with higher sensitivity and not lower specificity, residual or recurrent high-grade CIN than follow-up cytology.&lt;/span&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Nitrite infusion prevented development of vasospasm (no animals developed significant vasospasm; mean [SD] reduction in right middle cerebral artery area on day 7 after subarachnoid hemorrhage of 8% [9%] in nitrite-treated monkeys vs 47% [5%] in saline-treated controls; P&amp;lt;.001).&lt;/span&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;A CSF-blood glucose ratio of 0.4 or less (likelihood ratio [LR], 18; 95% CI, 12-27]), CSF white blood cell count of 500/muL or higher (LR, 15; 95% CI, 10-22), and CSF lactate level of 31.53 mg/dL or more (&amp;gt; or =3.5 mmol/L; LR, 21; 95% CI, 14-32) accurately diagnosed bacterial meningitis.&lt;/span&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="430" width="489.5" x="480" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Dh3GXK-rQ31At9WoxYu5-9" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#333333;fontStyle=1;fontFamily=Helvetica;" value="DPR" vertex="1">
+          <mxGeometry height="30" width="490" x="479.5" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Dh3GXK-rQ31At9WoxYu5-10" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=default;align=center;verticalAlign=bottom;rounded=0;spacing=2;spacingLeft=-11;spacingRight=5;spacingBottom=-5;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Contexts:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font color=&quot;#006600&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;&amp;nbsp;CONCLUSION A national universal leukoreduction program is potentially associated with decreased mortality as well as decreased fever episodes and antibiotic use after red blood cell transfusion in high-risk patients.&lt;/span&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Nitrite infusion prevented development of vasospasm (no animals developed significant vasospasm; mean [SD] reduction in right middle cerebral artery area on day 7 after subarachnoid hemorrhage of 8% [9%] in nitrite-treated monkeys vs 47% [5%] in saline-treated controls; P&amp;lt;.001).&lt;/span&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font color=&quot;#006600&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Compared with the control period, the adjusted odds of death following leukoreduction were reduced (odds ratio [OR], 0.87; 95% confidence interval [CI], 0.75-0.99), but serious nosocomial infections did not decrease (adjusted OR, 0.97; 95% CI, 0.87-1.09).&lt;/span&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;CONCLUSIONS AND RELEVANCE Simultaneously elevated levels of CRP and fibrinogen and leukocyte count in individuals with COPD were associated with increased risk of having exacerbations, even in those with milder COPD and in those without previous exacerbations.&lt;/span&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;The use of NIV was associated with a significant reduction in the rate of endotracheal intubation (20% vs 70%; P = .002), rate of fatal complications (20% vs 50%; P = .05), length of stay in the intensive care unit by survivors (mean [SD] days, 5.5 [3] vs 9 [4]; P = .03), and intensive care unit mortality (20% vs 50%; P = .05).&lt;/span&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="420" width="540" x="980" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Dh3GXK-rQ31At9WoxYu5-11" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#333333;fontStyle=1;fontFamily=Helvetica;" value="DPR with Reranker" vertex="1">
+          <mxGeometry height="30" width="540" x="980" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1UBhS4lAuLcX3x6vzVRe-1" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;whiteSpace=wrap;html=1;labelBackgroundColor=default;" value="&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;b style=&quot;forced-color-adjust: none; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Label:&amp;nbsp;&lt;/b&gt;&lt;span style=&quot;forced-color-adjust: none; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;False&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;b style=&quot;forced-color-adjust: none;&quot;&gt;Reasoning:&amp;nbsp;&lt;/b&gt;The context mentions that serious nosocomial infections did not decrease following leukoreduction (adjusted OR, 0.97; 95% CI, 0.87-1.09), which means there was no significant reduction in infectious complications.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="420" x="29.5" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="1UBhS4lAuLcX3x6vzVRe-2" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#333333;fontStyle=1;fontFamily=Helvetica;" value="Oracle" vertex="1">
+          <mxGeometry height="30" width="459.5" x="10" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="1UBhS4lAuLcX3x6vzVRe-4" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;whiteSpace=wrap;html=1;labelBackgroundColor=default;" value="&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;b style=&quot;forced-color-adjust: none;&quot;&gt;Label:&amp;nbsp;&lt;/b&gt;False&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;b style=&quot;forced-color-adjust: none;&quot;&gt;Reasoning:&amp;nbsp;&lt;/b&gt;The provided context does not mention leuko-reduced blood or its effects on infectious complications in red blood cell transfusion. The context discusses various medical treatments and their impacts, but it does not contain any information related to the statement.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="464.75" x="492.38" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1UBhS4lAuLcX3x6vzVRe-5" parent="Dh3GXK-rQ31At9WoxYu5-1" style="text;whiteSpace=wrap;html=1;labelBackgroundColor=default;" value="&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;b style=&quot;forced-color-adjust: none;&quot;&gt;Label:&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/b&gt;False&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;b style=&quot;forced-color-adjust: none;&quot;&gt;Reasoning:&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/b&gt;The context mentions that &#39;Compared with the control period, the adjusted odds of death following leukoreduction were reduced (odds ratio [OR], 0.87; 95% confidence interval [CI], 0.75-0.99), but serious nosocomial infections did not decrease (adjusted OR, 0.97; 95% CI, 0.87-1.09).&#39;, which suggests that leukoreduced blood does not necessarily reduce the risk of serious nosocomial infections after red blood cell transfusion.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="520" x="990" y="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Wx5TTl5UrXIHz4k4Z1zX" name="dataset">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-6" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;Raw Dataset&lt;/b&gt;" vertex="1">
+          <mxGeometry height="160" width="170" x="40" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-7" parent="Ui5t-pjUJ1jeaqqZspcX-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Scientific Claim" vertex="1">
+          <mxGeometry height="30" width="170" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-8" parent="Ui5t-pjUJ1jeaqqZspcX-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Passage" vertex="1">
+          <mxGeometry height="30" width="170" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-9" parent="Ui5t-pjUJ1jeaqqZspcX-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Label&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;- &lt;span style=&quot;background-color: rgb(185, 224, 165);&quot;&gt;SUPPORT&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;- &lt;span style=&quot;background-color: rgb(185, 224, 165);&quot;&gt;CONTRADICT&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;- &lt;span style=&quot;background-color: rgb(255, 206, 159);&quot;&gt;NOINFO&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="170" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-10" edge="1" parent="1" source="Ui5t-pjUJ1jeaqqZspcX-7" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Ui5t-pjUJ1jeaqqZspcX-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="230" y="330" as="sourcePoint" />
+            <mxPoint x="440" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-11" edge="1" parent="1" source="Ui5t-pjUJ1jeaqqZspcX-8" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Ui5t-pjUJ1jeaqqZspcX-4" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="390" y="490" as="sourcePoint" />
+            <mxPoint x="440" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-12" edge="1" parent="1" source="Ui5t-pjUJ1jeaqqZspcX-8" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Ui5t-pjUJ1jeaqqZspcX-5" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="260" y="355" />
+              <mxPoint x="260" y="385" />
+            </Array>
+            <mxPoint x="390" y="490" as="sourcePoint" />
+            <mxPoint x="440" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;dashed=1;dashPattern=8 8;" value="Label (&lt;span style=&quot;background-color: rgb(185, 224, 165);&quot;&gt;True&lt;/span&gt; or &lt;span style=&quot;background-color: rgb(255, 206, 159);&quot;&gt;False&lt;/span&gt;)" vertex="1">
+          <mxGeometry height="40" width="200" x="310" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-2" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;Preprocessed Dataset&lt;/b&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="310" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-3" parent="Ui5t-pjUJ1jeaqqZspcX-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Scientific Claim" vertex="1">
+          <mxGeometry height="30" width="200" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-4" parent="Ui5t-pjUJ1jeaqqZspcX-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;background-color: rgb(185, 224, 165);&quot;&gt;Positives Passages&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="200" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-5" parent="Ui5t-pjUJ1jeaqqZspcX-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;background-color: rgb(255, 206, 159);&quot;&gt;Negatives Passages&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="200" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Ui5t-pjUJ1jeaqqZspcX-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=2;fontSize=10;" value="LLM evaluation" vertex="1">
+          <mxGeometry height="23" width="60" x="454" y="414" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="-0O-g-BFVe3uJEAuSq2f" name="approaches">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="P_7Df2u7A97NHXq8nMth-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" value="" vertex="1">
+          <mxGeometry height="300" width="794.87" x="16.620000000000005" y="397" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" value="" vertex="1">
+          <mxGeometry height="97" width="793.25" x="16.620000000000005" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;fontStyle=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" value="Baseline: LLM only" vertex="1">
+          <mxGeometry height="30" width="793.25" x="16.620000000000005" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" value="RAG with DPR:&amp;nbsp;LLM provided with context retrieved by DPR" vertex="1">
+          <mxGeometry height="30" width="794.87" x="16.620000000000005" y="367" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-83" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=23;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-164" value="query">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="344.6100000000001" y="92.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-25" parent="1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.roundRectCallout;dx=9.92;dy=9;size=5;boundedLbl=1;flipH=1;" value="Claim" vertex="1">
+          <mxGeometry height="55" width="71.75" x="64.00000000000006" y="72" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-48" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="RAG prompt" vertex="1">
+          <mxGeometry height="41" width="120" x="378.4000000000001" y="424.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-54" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" value="" vertex="1">
+          <mxGeometry height="310" width="794.87" x="16.620000000000005" y="737" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-55" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;" value="&lt;span style=&quot;font-size: 12px;&quot;&gt;RAG with DPR and Reranker: LLM provided with context reranked after DPR candidate selection&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="794.87" x="16.620000000000005" y="707" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-85" parent="1" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" value="" vertex="1">
+          <mxGeometry height="170" width="794.87" x="15" y="187" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-86" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;fontStyle=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" value="Oracle:&amp;nbsp;LLM provided with golden context" vertex="1">
+          <mxGeometry height="30" width="794.87" x="15" y="157" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-91" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=23;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-159" value="query">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="346.77" y="228.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-92" parent="1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.roundRectCallout;dx=9.92;dy=9;size=5;boundedLbl=1;flipH=1;" value="Q&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;uery&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(Claim)&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="55" width="71.75" x="64.55000000000018" y="208" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-98" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-95" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-159" value="context">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="406.77" y="249" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-95" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;fontColor=#333333;" value="Golden passages" vertex="1">
+          <mxGeometry height="30" width="123.25" x="49.870000000000005" y="306" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-97" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-92" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.345;exitY=0.847;exitDx=0;exitDy=0;exitPerimeter=0;" target="P_7Df2u7A97NHXq8nMth-95" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="639.21" y="466" as="sourcePoint" />
+            <mxPoint x="689.21" y="416" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-106" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-48">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="137.9200000000002" y="445" as="sourcePoint" />
+            <mxPoint x="348.39" y="445" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-100" parent="1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.roundRectCallout;dx=9.92;dy=9;size=5;boundedLbl=1;flipH=1;" value="Q&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;uery&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(Claim)&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="55" width="71.75" x="66.16999999999996" y="418.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-108" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-157">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="468.58000000000004" y="446.5" as="sourcePoint" />
+            <mxPoint x="547.58" y="446" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-116" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" value="K&#39;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="135.08999999999997" y="934.5" as="sourcePoint" />
+            <mxPoint x="231.97000000000003" y="934.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-134" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-121" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-130">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-121" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#36393d;fillColor=#C3C3C3;align=center;verticalAlign=middle;rounded=0;" value="Retrieved Candidates" vertex="1">
+          <mxGeometry height="36.5" width="87.31" x="230.28000000000003" y="916.25" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-122" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="RAG prompt" vertex="1">
+          <mxGeometry height="41" width="120" x="377.8499999999998" y="764" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-123" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-124" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="P_7Df2u7A97NHXq8nMth-122">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-124" parent="1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.roundRectCallout;dx=9.92;dy=9;size=5;boundedLbl=1;flipH=1;" value="Q&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;uery&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(Claim)&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="55" width="71.75" x="65.61999999999978" y="757" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-125" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.345;exitY=0.847;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="101.61624999999987" y="803.585" as="sourcePoint" />
+            <mxPoint x="101.57564346798273" y="855.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-126" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-122" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="P_7Df2u7A97NHXq8nMth-128">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="468.03" y="785" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-127" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-128" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-129" value="returns">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-128" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=3" value="LLM" vertex="1">
+          <mxGeometry height="30" width="60" x="560.28" y="769.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-129" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Dict with &quot;label&quot; and &quot;reasoning&quot;" vertex="1">
+          <mxGeometry height="30" width="86.75" x="700.28" y="769.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-132" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-130" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-131" value="K">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-130" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;rounded=0;" value="Reranked" vertex="1">
+          <mxGeometry height="30" width="60" x="407.85" y="919.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-133" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-131" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-122">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-131" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;fontColor=#333333;" value="Retrieved Context" vertex="1">
+          <mxGeometry height="36.5" width="156.9" x="359.4" y="835.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-135" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-136" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-139">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-136" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#6c8ebf;fillColor=#dae8fc;align=center;verticalAlign=middle;rounded=0;" value="Corpus" vertex="1">
+          <mxGeometry height="30" width="68.38" x="67.29999999999973" y="645.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-137" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-139" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-136">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-138" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-139" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-148" value="K">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="231.9000000000002" y="614.25" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-139" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#d79b00;fillColor=#ffe6cc;align=center;verticalAlign=middle;rounded=0;" value="Retrieval" vertex="1">
+          <mxGeometry height="30" width="67.72" x="67.29999999999995" y="565.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-140" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-141" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-139">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-141" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#82b366;fillColor=#d5e8d4;align=center;verticalAlign=middle;rounded=0;" value="Query&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;embedding&lt;/span&gt;" vertex="1">
+          <mxGeometry height="28" width="100" x="51.49000000000001" y="501.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-144" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.345;exitY=0.847;exitDx=0;exitDy=0;exitPerimeter=0;" target="P_7Df2u7A97NHXq8nMth-141" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="101.21000000000004" y="465.5" as="sourcePoint" />
+            <mxPoint x="101.20999999999958" y="517" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-149" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-148" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-48">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-148" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;fontColor=#333333;" value="Retrieved Context" vertex="1">
+          <mxGeometry height="36.5" width="126.91" x="374.95000000000005" y="562.25" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-150" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-151" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-153">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-151" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#6c8ebf;fillColor=#dae8fc;align=center;verticalAlign=middle;rounded=0;" value="Corpus" vertex="1">
+          <mxGeometry height="30" width="68.38" x="67.29999999999978" y="999.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-152" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-153" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-151">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-153" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#d79b00;fillColor=#ffe6cc;align=center;verticalAlign=middle;rounded=0;" value="Retrieval" vertex="1">
+          <mxGeometry height="30" width="67.72" x="67.30000000000001" y="919.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-154" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-155" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-153">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qj3yNeMghASl2JdcgovX-1" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-155" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-130">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="870" />
+              <mxPoint x="340" y="935" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-155" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#82b366;fillColor=#d5e8d4;align=center;verticalAlign=middle;rounded=0;" value="Query&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;embedding&lt;/span&gt;" vertex="1">
+          <mxGeometry height="28" width="100" x="51.490000000000066" y="855.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-156" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-157" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-158" value="returns">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-157" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=3" value="LLM" vertex="1">
+          <mxGeometry height="30" width="60" x="570.83" y="430.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-158" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Dict with &quot;label&quot; and &quot;reasoning&quot;" vertex="1">
+          <mxGeometry height="30" width="86.75" x="700.83" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-159" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="RAG prompt" vertex="1">
+          <mxGeometry height="41" width="120" x="376.78" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-160" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-159" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-162">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="466.96000000000004" y="232" as="sourcePoint" />
+            <mxPoint x="545.9599999999998" y="231.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-161" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-162" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-163" value="returns">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-162" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=3" value="LLM" vertex="1">
+          <mxGeometry height="30" width="60" x="569.2099999999998" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-163" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Dict with &quot;label&quot; and &quot;reasoning&quot;" vertex="1">
+          <mxGeometry height="30" width="86.75" x="699.2099999999998" y="215.5" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-164" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="RAG prompt" vertex="1">
+          <mxGeometry height="41" width="120" x="371.15999999999997" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-165" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-164" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-167">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="461.3399999999998" y="96" as="sourcePoint" />
+            <mxPoint x="540.3399999999998" y="95.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-166" edge="1" parent="1" source="P_7Df2u7A97NHXq8nMth-167" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="P_7Df2u7A97NHXq8nMth-168" value="returns">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-167" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=3" value="LLM" vertex="1">
+          <mxGeometry height="30" width="60" x="563.5899999999998" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="P_7Df2u7A97NHXq8nMth-168" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Dict with &quot;label&quot; and &quot;reasoning&quot;" vertex="1">
+          <mxGeometry height="30" width="86.75" x="693.5899999999997" y="79.5" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
