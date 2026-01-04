@@ -3,35 +3,62 @@
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \citation{lewis2020retrieval}
-\citation{karpukhin2020dense}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Problem Statement and Objectives}{1}{subsection.1.1}\protected@file@percent }
 \citation{lewis2020retrieval}
 \citation{karpukhin2020dense}
-\citation{chang2020pre}
+\citation{karpukhin2020dense}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{lewis2020retrieval}
+\citation{karpukhin2020dense}
+\citation{sanh2020distilbert}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Problem Statement and Objectives}{2}{subsection.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Dataset and Key Concepts}{2}{subsection.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Data Preparation}{2}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Dense Passage Retrieval (DPR) Model}{2}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Architecture}{2}{subsubsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Training Objective}{2}{subsubsection.3.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Training Configuration}{3}{subsubsection.3.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Retrieval and Evaluation}{3}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Retrieval Metrics}{3}{subsubsection.3.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Question Answering Pipeline}{3}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Approach 1: Baseline (LLM-only)}{3}{subsubsection.3.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Approach 2: Upperline (LLM + Golden Context)}{3}{subsubsection.3.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}Approach 3: RAG with Fine-tuned DPR}{3}{subsubsection.3.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Tokenization and Attention Masks}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Dense Passage Retrieval (DPR) Model}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Architecture}{2}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Scoring and Retrieval}{3}{subsubsection.3.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}Training Objective and Configuration}{3}{subsubsection.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Cross-Encoder Reranker}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Architecture}{3}{subsubsection.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Hard Negative Mining and Training}{3}{subsubsection.3.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Fact-Checking Pipeline}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Approach 1: Baseline (LLM-only)}{3}{subsubsection.3.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.2}Approach 2: Oracle (LLM + Golden Context)}{3}{subsubsection.3.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.3}Approach 3: RAG with DPR}{3}{subsubsection.3.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.4}Approach 4: RAG with DPR + Reranker}{3}{subsubsection.3.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.5}Generator Configuration and Prompting}{3}{subsubsection.3.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Evaluation}{3}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Retrieval Metric: Mean Reciprocal Rank (MRR)}{3}{subsubsection.3.6.1}\protected@file@percent }
+\citation{lewis2020retrieval}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}End-to-End Metric: Fact-Checking Accuracy}{4}{subsubsection.3.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Qualitative Examples}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Outputs for a claim under baseline, oracle, DPR, and DPR+reranker. The baseline relies only on parametric knowledge and may hallucinate. Oracle uses gold evidence. DPR retrieval improves grounding, and reranking provides more relevant evidence, improving reasoning quality.}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:ex1}{{1}{4}{Outputs for a claim under baseline, oracle, DPR, and DPR+reranker. The baseline relies only on parametric knowledge and may hallucinate. Oracle uses gold evidence. DPR retrieval improves grounding, and reranking provides more relevant evidence, improving reasoning quality}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Retrieval Performance (MRR)}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Outputs for a claim about CO\textsubscript  {2} reduction. The baseline may guess correctly but with generic reasoning. RAG improves evidence-based explanation, especially when reranking selects passages closer to the claim semantics.}}{4}{figure.2}\protected@file@percent }
+\newlabel{fig:ex2}{{2}{4}{Outputs for a claim about CO\textsubscript {2} reduction. The baseline may guess correctly but with generic reasoning. RAG improves evidence-based explanation, especially when reranking selects passages closer to the claim semantics}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces MRR results for DPR vs.\ DPR with reranker under different candidate pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR across settings.}}{4}{figure.3}\protected@file@percent }
+\newlabel{fig:mrr1}{{3}{4}{MRR results for DPR vs.\ DPR with reranker under different candidate pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR across settings}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Left: DPR-only MRR increases with context size. Right: reranking improves MRR further as candidate pool increases. Larger candidate pools allow better reranking but increase computation.}}{4}{figure.4}\protected@file@percent }
+\newlabel{fig:mrr2}{{4}{4}{Left: DPR-only MRR increases with context size. Right: reranking improves MRR further as candidate pool increases. Larger candidate pools allow better reranking but increase computation}{figure.4}{}}
+\citation{karpukhin2020dense}
+\citation{lewis2020retrieval}
+\citation{lewis2020retrieval}
+\citation{sanh2020distilbert}
 \bibdata{../references}
 \bibcite{chang2020pre}{{1}{2020}{{Chang et~al.}}{{Chang, Yu, Zhang, Zhou, Tenenbaum, and Barzilay}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}End-to-End Accuracy}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Fact-checking accuracy by approach and retrieval configuration. Oracle is the upper bound. RAG improves over baseline when retrieved evidence is correct; reranking helps by selecting better contexts.}}{5}{figure.5}\protected@file@percent }
+\newlabel{fig:acc}{{5}{5}{Fact-checking accuracy by approach and retrieval configuration. Oracle is the upper bound. RAG improves over baseline when retrieved evidence is correct; reranking helps by selecting better contexts}{figure.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{5}{section.6}\protected@file@percent }
 \bibcite{karpukhin2020dense}{{2}{2020}{{Karpukhin et~al.}}{{Karpukhin, O{\u 0308}uz, Min, Lewis, Wu, Schwenk, Schwab, and Riedel}}}
 \bibcite{lewis2020retrieval}{{3}{2020}{{Lewis et~al.}}{{Lewis, Perez, Piktus, Schwenk, Schwab, Kiela, and Riedel}}}
 \bibstyle{plainnat}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.4}LLM Configuration}{4}{subsubsection.3.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{4}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A}Implementation Details}{4}{appendix.A}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Hardware and Software}{4}{subsection.A.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Reproducibility}{4}{subsection.A.2}\protected@file@percent }
-\gdef \@abspage@last{4}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Implementation Details}{6}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Hardware and Software}{6}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Reproducibility}{6}{subsection.A.2}\protected@file@percent }
+\gdef \@abspage@last{6}
