@@ -241,7 +241,6 @@ INPUT ./viz/llm_retrieval_example_2.jpg
 INPUT ./viz/llm_retrieval_example_2.jpg
 INPUT ./viz/llm_retrieval_example_2.jpg
 INPUT ./viz/llm_retrieval_example_2.jpg
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT ./viz/mrr_results.png
 INPUT ./viz/mrr_results.png
 INPUT ./viz/mrr_results.png
@@ -257,8 +256,6 @@ INPUT ./viz/llm_accuracy.png
 INPUT ./viz/llm_accuracy.png
 INPUT ./viz/llm_accuracy.png
 INPUT ./viz/llm_accuracy.png
-INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT ./RAG_QA_Report.bbl
 INPUT ./RAG_QA_Report.bbl
 INPUT RAG_QA_Report.bbl

@@ -5,14 +5,13 @@
 \citation{lewis2020retrieval}
 \citation{karpukhin2020dense}
 \citation{karpukhin2020dense}
-\citation{wadden2020fact}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Problem Statement and Objectives}{1}{subsection.1.1}\protected@file@percent }
+\citation{wadden2020fact}
 \citation{lewis2020retrieval}
 \citation{karpukhin2020dense}
 \citation{karpukhin2020dense}
 \citation{sanh2020distilbert}
-\citation{devlin2018bert}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Dataset and Key Concepts}{2}{subsection.1.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces SciFact dataset raw schema and after data preprocessing}}{2}{figure.1}\protected@file@percent }
 \newlabel{fig:dataset}{{1}{2}{SciFact dataset raw schema and after data preprocessing}{figure.1}{}}
@@ -23,34 +22,32 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Cross-Encoder Reranker}{3}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Experiment Pipeline}{3}{subsection.3.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Evaluation Metrics}{3}{subsection.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
-\citation{lewis2020retrieval}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the four approaches compared in this study: (1) baseline LLM-only, (2) oracle with golden context, (3) RAG with DPR, and (4) RAG with DPR plus reranker.}}{4}{figure.2}\protected@file@percent }
 \newlabel{fig:approaches}{{2}{4}{Overview of the four approaches compared in this study: (1) baseline LLM-only, (2) oracle with golden context, (3) RAG with DPR, and (4) RAG with DPR plus reranker}{figure.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Qualitative Examples}{4}{subsection.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Outputs for a claim under baseline, oracle, DPR, and DPR+reranker. The baseline relies only on parametric knowledge and may hallucinate. Oracle uses gold evidence. DPR retrieval improves grounding, and reranking provides more relevant evidence, improving reasoning quality.}}{4}{figure.3}\protected@file@percent }
-\newlabel{fig:ex1}{{3}{4}{Outputs for a claim under baseline, oracle, DPR, and DPR+reranker. The baseline relies only on parametric knowledge and may hallucinate. Oracle uses gold evidence. DPR retrieval improves grounding, and reranking provides more relevant evidence, improving reasoning quality}{figure.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Outputs for a claim about CO\textsubscript  {2} reduction. The baseline may guess correctly but with generic reasoning. RAG improves evidence-based explanation, especially when reranking selects passages closer to the claim semantics.}}{4}{figure.4}\protected@file@percent }
-\newlabel{fig:ex2}{{4}{4}{Outputs for a claim about CO\textsubscript {2} reduction. The baseline may guess correctly but with generic reasoning. RAG improves evidence-based explanation, especially when reranking selects passages closer to the claim semantics}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Example 1: Outputs for a claim under the four approaches baseline, oracle, DPR, and DPR+reranker.}}{4}{figure.3}\protected@file@percent }
+\newlabel{fig:ex1}{{3}{4}{Example 1: Outputs for a claim under the four approaches baseline, oracle, DPR, and DPR+reranker}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Example 2: Outputs for a claim under the four approaches baseline, oracle, DPR, and DPR+reranker.}}{4}{figure.4}\protected@file@percent }
+\newlabel{fig:ex2}{{4}{4}{Example 2: Outputs for a claim under the four approaches baseline, oracle, DPR, and DPR+reranker}{figure.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Retrieval Performance (MRR)}{4}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}End-to-End Accuracy}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces MRR results for DPR vs.\ DPR with reranker under different candidate pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR across settings.}}{4}{figure.5}\protected@file@percent }
+\newlabel{fig:mrr1}{{5}{4}{MRR results for DPR vs.\ DPR with reranker under different candidate pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR across settings}{figure.5}{}}
 \citation{karpukhin2020dense}
 \citation{lewis2020retrieval}
 \citation{lewis2020retrieval}
 \citation{sanh2020distilbert}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces MRR results for DPR vs.\ DPR with reranker under different candidate pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR across settings.}}{5}{figure.5}\protected@file@percent }
-\newlabel{fig:mrr1}{{5}{5}{MRR results for DPR vs.\ DPR with reranker under different candidate pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR across settings}{figure.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Left: DPR-only MRR increases with context size. Right: reranking improves MRR further as candidate pool increases. Larger candidate pools allow better reranking but increase computation.}}{5}{figure.6}\protected@file@percent }
 \newlabel{fig:mrr2}{{6}{5}{Left: DPR-only MRR increases with context size. Right: reranking improves MRR further as candidate pool increases. Larger candidate pools allow better reranking but increase computation}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Fact checking Accuracy}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Fact-checking accuracy by approach and retrieval configuration.}}{5}{figure.7}\protected@file@percent }
+\newlabel{fig:acc}{{7}{5}{Fact-checking accuracy by approach and retrieval configuration}{figure.7}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Fact-checking accuracy by approach and retrieval configuration. Oracle is the upper bound. RAG improves over baseline when retrieved evidence is correct; reranking helps by selecting better contexts.}}{5}{figure.7}\protected@file@percent }
-\newlabel{fig:acc}{{7}{5}{Fact-checking accuracy by approach and retrieval configuration. Oracle is the upper bound. RAG improves over baseline when retrieved evidence is correct; reranking helps by selecting better contexts}{figure.7}{}}
 \bibdata{../references}
-\bibcite{devlin2018bert}{{1}{2018}{{Devlin et~al.}}{{Devlin, Chang, Lee, and Toutanova}}}
-\bibcite{karpukhin2020dense}{{2}{2020}{{Karpukhin et~al.}}{{Karpukhin, Oguz, Min, Lewis, Wu, Schwenk, Schwab, and Riedel}}}
-\bibcite{lewis2020retrieval}{{3}{2020}{{Lewis et~al.}}{{Lewis, Perez, Piktus, Schwenk, Schwab, Kiela, and Riedel}}}
-\bibcite{sanh2020distilbert}{{4}{2020}{{Sanh et~al.}}{{Sanh, Debut, Chaumond, and Wolf}}}
-\bibcite{wadden2020fact}{{5}{2020}{{Wadden et~al.}}{{Wadden, Lin, Lo, Wang, van Zuylen, Cohan, and Hajishirzi}}}
+\bibcite{karpukhin2020dense}{{1}{2020}{{Karpukhin et~al.}}{{Karpukhin, Oguz, Min, Lewis, Wu, Schwenk, Schwab, and Riedel}}}
+\bibcite{lewis2020retrieval}{{2}{2020}{{Lewis et~al.}}{{Lewis, Perez, Piktus, Schwenk, Schwab, Kiela, and Riedel}}}
+\bibcite{sanh2020distilbert}{{3}{2020}{{Sanh et~al.}}{{Sanh, Debut, Chaumond, and Wolf}}}
+\bibcite{wadden2020fact}{{4}{2020}{{Wadden et~al.}}{{Wadden, Lin, Lo, Wang, van Zuylen, Cohan, and Hajishirzi}}}
 \bibstyle{plainnat}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {A}Implementation Details}{6}{appendix.A}\protected@file@percent }

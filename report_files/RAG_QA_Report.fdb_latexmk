@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex RAG_QA_Report"] 1767632450.34858 "RAG_QA_Report.aux" "RAG_QA_Report.bbl" "RAG_QA_Report" 1767632451.34922 0
+["bibtex RAG_QA_Report"] 1767637081.44565 "RAG_QA_Report.aux" "RAG_QA_Report.bbl" "RAG_QA_Report" 1767637123.08891 0
   "../references.bib" 1767624406.06891 2341 e928f7ce4854ea63a93c84826df0cf12 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "RAG_QA_Report.aux" 1767632451.17751 7101 db06b7a34f79f0483cc417177a733b0e "pdflatex"
+  "RAG_QA_Report.aux" 1767637122.91727 6061 84c116178ff3cb93d9ab5d3b7c809ed1 "pdflatex"
   (generated)
   "RAG_QA_Report.bbl"
   "RAG_QA_Report.blg"
   (rewritten before read)
-["pdflatex"] 1767632450.42022 "/workspaces/RAG_qa_TAAC/report_files/RAG_QA_Report.tex" "RAG_QA_Report.pdf" "RAG_QA_Report" 1767632451.34941 0
+["pdflatex"] 1767637122.17582 "/workspaces/RAG_qa_TAAC/report_files/RAG_QA_Report.tex" "RAG_QA_Report.pdf" "RAG_QA_Report" 1767637123.08919 0
   "/etc/texmf/web2c/texmf.cnf" 1767615287.01796 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -124,11 +124,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1767615319.15196 5312232 f3296911be9cc021788f3f879cf0a47d ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1767615353 6800797 98c4530c268fb2455c8da15a6839e2a4 ""
-  "/workspaces/RAG_qa_TAAC/report_files/RAG_QA_Report.tex" 1767632448.63751 20944 85d64aa114c675e11274bd42d87ac8ef ""
-  "RAG_QA_Report.aux" 1767632451.17751 7101 db06b7a34f79f0483cc417177a733b0e "pdflatex"
-  "RAG_QA_Report.bbl" 1767632450.41651 2063 6ec1c3777ab3d3d57d1c93a8e7d97984 "bibtex RAG_QA_Report"
-  "RAG_QA_Report.out" 1767632451.17851 2909 4cebde35c48164cc2532dba5bba0b813 "pdflatex"
-  "RAG_QA_Report.tex" 1767632448.63751 20944 85d64aa114c675e11274bd42d87ac8ef ""
+  "/workspaces/RAG_qa_TAAC/report_files/RAG_QA_Report.tex" 1767637121.03127 21106 a7e68a7ea661a8504807f12bb5f9acb9 ""
+  "RAG_QA_Report.aux" 1767637122.91727 6061 84c116178ff3cb93d9ab5d3b7c809ed1 "pdflatex"
+  "RAG_QA_Report.bbl" 1767637081.50028 1819 0a9c15a0753e8f6858a99d8e65bf6fea "bibtex RAG_QA_Report"
+  "RAG_QA_Report.out" 1767637122.91827 2927 098ce9942daabc200aebbf8874ef7571 "pdflatex"
+  "RAG_QA_Report.tex" 1767637121.03127 21106 a7e68a7ea661a8504807f12bb5f9acb9 ""
   "viz/approaches.jpg" 1767612369.26599 90914 27916ba48ff1d936e72e520ced2e9965 ""
   "viz/dataset.jpg" 1767612369.26699 19501 b5f8b4054fe723279c1dcba40456af6e ""
   "viz/llm_accuracy.png" 1767612369.26699 47886 e8044765abf56d0ec821b62bc59ac328 ""
