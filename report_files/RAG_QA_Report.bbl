@@ -1,17 +1,16 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{5}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Chang et~al.(2020)Chang, Yu, Zhang, Zhou, Tenenbaum, and Barzilay]{chang2020pre}
-Wayne Chang, Jie Yu, Yuqing Zhang, Zheng Zhou, Joshua~B Tenenbaum, and Regina Barzilay.
-\newblock Pre-trained models for natural language processing: A survey.
-\newblock \emph{arXiv preprint arXiv:2003.08271}, 2020.
+\bibitem[Devlin et~al.(2018)Devlin, Chang, Lee, and Toutanova]{devlin2018bert}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
+\newblock Bert: Pre-training of deep bidirectional transformers for language understanding, 2018.
 
-\bibitem[Karpukhin et~al.(2020)Karpukhin, O{\u0308}uz, Min, Lewis, Wu, Schwenk, Schwab, and Riedel]{karpukhin2020dense}
-Vladimir Karpukhin, Barlas O{\u0308}uz, Sewon Min, Patrick Lewis, Ledell Wu, Holger Schwenk, Fabio Schwab, and Sebastian Riedel.
+\bibitem[Karpukhin et~al.(2020)Karpukhin, Oguz, Min, Lewis, Wu, Schwenk, Schwab, and Riedel]{karpukhin2020dense}
+Vladimir Karpukhin, Barlas Oguz, Sewon Min, Patrick Lewis, Ledell Wu, Holger Schwenk, Fabio Schwab, and Sebastian Riedel.
 \newblock Dense passage retrieval for open-domain question answering.
 \newblock \emph{Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)}, pages 6769--6781, 2020.
 
@@ -19,5 +18,17 @@ Vladimir Karpukhin, Barlas O{\u0308}uz, Sewon Min, Patrick Lewis, Ledell Wu, Hol
 Patrick Lewis, Ethan Perez, Aleksandra Piktus, Holger Schwenk, Fabio Schwab, Douwe Kiela, and Sebastian Riedel.
 \newblock Retrieval-augmented generation for knowledge-intensive nlp tasks.
 \newblock \emph{Advances in Neural Information Processing Systems}, 33:\penalty0 9459--9474, 2020.
+
+\bibitem[Sanh et~al.(2020)Sanh, Debut, Chaumond, and Wolf]{sanh2020distilbert}
+Victor Sanh, Lysandre Debut, Julien Chaumond, and Thomas Wolf.
+\newblock Distilbert, a distilled version of bert: Smaller, faster, cheaper and lighter.
+\newblock \emph{arXiv preprint arXiv:1910.01108}, 2020.
+
+\bibitem[Wadden et~al.(2020)Wadden, Lin, Lo, Wang, van Zuylen, Cohan, and Hajishirzi]{wadden2020fact}
+David Wadden, Shanchuan Lin, Kyle Lo, Lucy~Lu Wang, Madeleine van Zuylen, Arman Cohan, and Hannaneh Hajishirzi.
+\newblock Fact or fiction: Verifying scientific claims.
+\newblock pages 7534--7550, 2020.
+\newblock \doi{10.18653/v1/2020.emnlp-main.609}.
+\newblock URL \url{https://aclanthology.org/2020.emnlp-main.609}.
 
 \end{thebibliography}

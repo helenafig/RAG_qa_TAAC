@@ -19,8 +19,8 @@
 \newcommand\confname{Advanced Topics on Machine Learning}
 \newcommand\confyear{2025/2026}
 
-\title{Document Information as Non-Parametric Memory using Dense Passage Retrieval and\\
-Custom Reranker Integrated to a LLM}
+\title{Document Information as Non-Parametric Memory using Dense Passage
+  Retrieval and Reranker Integrated to a LLM}
 
 \author{Danillo Silva \and Helena Alves \and Paula Ito \\
 MSc Data Science and Engineering \\
@@ -36,154 +36,229 @@ Portugal}
 \maketitle
 
 \begin{abstract}
-Large language models (LLMs) can answer many questions from internal knowledge, but their knowledge is static and they may hallucinate, especially in scientific domains. Retrieval-Augmented Generation (RAG) addresses this by combining a parametric generator with a non-parametric memory (a document corpus) that can be retrieved at inference time. In this project, we implement and evaluate a RAG pipeline for \textbf{scientific fact-checking} using the SciFact dataset. We compare four approaches: (1) baseline LLM-only, (2) oracle LLM with golden evidence, (3) RAG with Dense Passage Retrieval (DPR), and (4) RAG with DPR plus a cross-encoder reranker. We evaluate retrieval quality with Mean Reciprocal Rank (MRR) and evaluate end-to-end performance with fact-checking accuracy (True/False label prediction). Results show that reranking improves retrieval quality and that retrieval-augmented approaches improve factual grounding, although incorrect retrieval can still harm performance compared to the oracle.
+Large language models (LLMs) may produce answers that appear correct but lack
+factual grounding, particularly in scientific domains. This work implements and
+evaluates a Retrieval-Augmented Generation (RAG) pipeline for scientific
+fact-checking using the SciFact dataset. The pipeline integrates Dense Passage
+Retrieval (DPR) with a cross-encoder reranker to improve evidence selection
+quality. Four approaches are compared: baseline LLM-only, upperline LLM-only with golden
+context, RAG with DPR, and RAG with DPR plus reranking. Results demonstrate
+that the two-stage retrieval strategy (bi-encoder followed by cross-encoder
+reranking) improves retrieval precision and retrieval quality, with reranking
+achieving higher Mean Reciprocal Rank (MRR) across configurations. While
+retrieval-augmented approaches improve factual grounding compared to the
+baseline, performance remains sensitive to retrieval errors, highlighting the
+importance of robust evidence selection for fact-checking tasks.
 \end{abstract}
 
 \section{Introduction}
 
-Open-domain question answering and related knowledge-intensive tasks require systems to access relevant information from large corpora. Traditional methods often relied on sparse lexical matching (e.g., BM25), while more recent approaches use large language models (LLMs) that generate outputs directly from their parameters. However, purely generative models may produce answers that sound correct but are not supported by evidence, especially in specialized domains.
+Large language models have demonstrated remarkable capabilities in answering
+questions and reasoning tasks, yet they suffer from fundamental limitations in
+knowledge-intensive domains. Their training data becomes outdated, and they
+cannot reliably cite sources for factual claims, leading to hallucination
+problems especially pronounced in scientific and specialized domains where
+accuracy is critical.
 
-Recently, the Retrieval-Augmented Generation (RAG) paradigm emerged as a strong approach to combine retrieval and generation \cite{lewis2020retrieval}. RAG systems retrieve top-$K$ documents from a corpus and provide them as context to the generator. This reduces hallucination and makes outputs easier to inspect, since the model can cite evidence. In the original RAG work, retrieval is performed with Dense Passage Retrieval (DPR) and the generator is a sequence-to-sequence model that conditions on retrieved passages \cite{lewis2020retrieval}.
+Recent work has addressed these limitations through Retrieval-Augmented
+Generation (RAG), which combines neural generation with external information
+retrieval to ground model outputs in retrievable evidence
+(\cite{lewis2020retrieval}). Dense Passage Retrieval (DPR) provides an effective
+retrieval mechanism using learned dense representations (\cite{karpukhin2020dense}),
+though bi-encoder architectures may still retrieve semantically similar but
+factually incorrect passages. Cross-encoder reranking addresses this by jointly
+modeling query-passage interactions to refine candidate rankings
+(\cite{karpukhin2020dense}).
 
-Dense Passage Retrieval \cite{karpukhin2020dense} is a learned retrieval method that maps queries and passages into dense vectors and retrieves by similarity in embedding space. Compared to sparse retrieval, DPR can capture semantic similarity and match paraphrases. DPR uses a dual-encoder (bi-encoder) architecture, which is efficient because passage embeddings can be precomputed.
-
-Despite strong retrieval performance, bi-encoders may still retrieve semantically similar but incorrect passages. A common improvement is to add a reranking step using a cross-encoder, which jointly encodes query and passage to score relevance more precisely (at higher computational cost) \cite{karpukhin2020dense}.
-
-Although much RAG literature focuses on open-domain QA, this project applied RAG to scientific fact-checking. Given a scientific claim, the system must decide if it is supported or contradicted by scientific evidence. This requires retrieving relevant passages and reasoning over them. Our system outputs a label (True/False) and a short reasoning text.
+Although most RAG work focuses on open-domain question answering, this project
+applies RAG to scientific fact-checking, where assertions must be verified
+against scientific evidence. Given a scientific claim, the system must
+determine whether supporting or contradicting evidence exists in a document
+corpus. This task demands both effective retrieval and robust evidence-based
+reasoning.
 
 \subsection{Problem Statement and Objectives}
 
-The goal of this project was to implement a complete RAG pipeline for scientific fact-checking and evaluate the impact of dense retrieval and reranking. Specifically, we aim to:
+The goal of this project was to implement a complete RAG pipeline for
+scientific fact-checking and evaluate the impact of dense retrieval DPR and
+reranking on both retrieval quality (Mean Reciprocal Rank) and end-to-end
+fact-checking accuracy.
+Specifically, the study compare four approaches:
 
 \begin{enumerate}
-    \item Implement a DPR-based retrieval component using DistilBERT encoders
-    \item Implement a cross-encoder reranker and use hard negatives from retrieval to train it
-    \item Compare baseline, oracle, DPR-based RAG, and DPR combined with reranker RAG approaches
-    \item Evaluate retrieval quality with Mean Reciprocal Rank (MRR) and end-to-end accuracy
+    \item Baseline: using LLM-only.
+    \item Upperline (Oracle): LLM provided with golden context
+    \item RAG with DPR: LLM provided with context retrieved by DPR
+    \item RAG with DPR and Reranker: LLM provided with context reranked after DPR candidate selection
 \end{enumerate}
 
 \subsection{Dataset and Key Concepts}
 
-We use the SciFact dataset (bigbio/scifact: scifact\_labelprediction\_bigbio\_pairs subset). Each example contains a claim, a passage, and a label: SUPPORT, CONTRADICT, or NOINFO. For our training setup, SUPPORT and CONTRADICT passages are treated as positives, while NOINFO passages are used as negatives. The dataset split used in this project is:
-\begin{itemize}
-    \item Train: 594 claims
-    \item Evaluation: 188 claims
-    \item Corpus size: 2,263 passages
-\end{itemize}
+The study uses the SciFact dataset~(\cite{wadden2020fact}), publicly available on
+Hugging Face (bigbio/scifact: scifact\_labelprediction\_bigbio\_pairs subset).
+Each example contains a claim, a passage, and a label: SUPPORT, CONTRADICT, or
+NOINFO.
+For our training setup, SUPPORT and CONTRADICT passages are treated as
+positives, while NOINFO passages serve as negatives.
+The dataset is split into training and evaluation sets as follows: training set
+with 594 claims, evaluation set with 188 claims, and corpus size of 2,263
+passages. 
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{viz/dataset.jpg}
+    \caption{SciFact dataset raw schema and after data preprocessing}
+    \label{fig:dataset}
+\end{figure}
 
 \section{Related Work}
 
 \textbf{Retrieval-Augmented Generation (RAG).}
-Lewis et al. \cite{lewis2020retrieval} propose combining parametric generation with non-parametric memory accessed through retrieval. Their work highlights that retrieval can reduce hallucinations, help with factuality, and allow knowledge updates by changing the index. They show strong results in open-domain QA and also discuss fact verification tasks.
+Lewis et al.~\cite{lewis2020retrieval} combine parametric generation with
+non-parametric memory through retrieval, reducing hallucinations and improving
+factuality for knowledge-intensive tasks. RAG enables knowledge updates by
+modifying the retrieval index without retraining and has demonstrated effectiveness
+in open-domain QA and fact verification.
 
 \textbf{Dense Passage Retrieval (DPR).}
-Karpukhin et al. \cite{karpukhin2020dense} introduce a dual-encoder framework trained with contrastive learning. DPR outperforms BM25 in open-domain QA retrieval settings because it matches semantically similar text rather than only exact keywords. DPR uses dot-product similarity between query and passage embeddings and can be scaled with approximate nearest neighbor search.
+Karpukhin et al.~\cite{karpukhin2020dense} introduce DPR, a dual-encoder
+framework trained with contrastive learning that captures semantic similarity
+between queries and passages. DPR outperforms sparse methods like BM25 by
+leveraging dense representations and enables efficient retrieval through
+precomputed passage embeddings and approximate nearest neighbor search.
+
+\textbf{Cross-Encoder Reranking.}
+Cross-encoders jointly encode query-passage pairs to compute precise relevance
+scores, improving upon bi-encoders by modeling fine-grained query-passage
+interactions \cite{karpukhin2020dense}. In fact-checking, reranking is
+particularly valuable for distinguishing semantically relevant but factually
+incorrect passages from genuine supporting evidence. The two-stage architecture
+(recall-focused bi-encoder followed by precision-focused cross-encoder) improves
+retrieval quality without significant computational overhead.
 
 \textbf{Efficient Transformers (DistilBERT).}
-DistilBERT \cite{sanh2020distilbert} is a compressed version of BERT that keeps most of the performance while being smaller and faster. This makes it appropriate for retrieval systems and student projects with limited resources. In our pipeline, DistilBERT is used as the backbone encoder for both DPR and the reranker.
+DistilBERT \cite{sanh2020distilbert} is a distilled version of BERT
+\cite{devlin2018bert} that retains 97\% of performance while being 40\% smaller
+and 60\% faster. Its efficiency makes it suitable for resource-constrained
+retrieval systems. In this work, DistilBERT serves as the backbone encoder for
+both DPR and the reranker.
 
 \section{Methodology}
 
-\subsection{Data Preparation}
+This section describes the technical approach to implementing the RAG pipeline
+for scientific fact-checking. The methodology covers: (1) input preprocessing and
+tokenization using DistilBERT, (2) training and deployment of the DPR retriever
+with contrastive learning, (3) development of a cross-encoder reranker using
+hard negative mining, (4) the four computational approaches evaluated for
+fact-checking (baseline, oracle, RAG with DPR, and RAG with DPR + reranker),
+and (5) evaluation metrics for both retrieval quality and end-to-end accuracy.
 
-The SciFact dataset contains claim--passage pairs. We preprocess it to build training tuples for retrieval:
-\begin{itemize}
-    \item \textbf{Query:} the claim
-    \item \textbf{Positive passages:} passages labeled SUPPORT or CONTRADICT
-    \item \textbf{Negative passages:} randomly selected NOINFO passages
-\end{itemize}
-We also build a retrieval corpus of 2,263 unique passages (after removing duplicates). This corpus is used to evaluate retrieval and to provide context in the RAG pipeline.
+\subsection{Preprocessing and Tokenization}
 
-\subsection{Tokenization and Attention Masks}
-
-Inputs are tokenized using \texttt{distilbert-base-uncased} with maximum length 256. Variable-length sequences are padded to this maximum length. Attention masks are generated so that real tokens have mask value 1 and padding tokens have value 0. This ensures padding tokens do not influence the self-attention computation.
+Input sequences are tokenized using the \texttt{distilbert-base-uncased}
+tokenizer with a maximum length of 256 tokens. Variable-length sequences are
+padded to this maximum length. Attention masks are generated to distinguish real
+tokens (mask value 1) from padding tokens (mask value 0), ensuring that padding
+tokens do not influence self-attention computations.
 
 \subsection{Dense Passage Retrieval (DPR) Model}
 
-\subsubsection{Architecture}
+The DPR system employs a bi-encoder architecture consisting of a query encoder
+and a passage encoder, both implemented using DistilBERT. The query encoder
+encodes claims into dense vectors, while the passage encoder independently
+encodes candidate passages into corresponding dense vectors. Mean pooling over
+token embeddings produces fixed-size vector representations. Similarity scoring
+is computed using batch dot-product operations between query and passage
+embeddings.
 
-The DPR retriever is a bi-encoder:
-\begin{itemize}
-    \item \textbf{Query encoder:} DistilBERT encodes the claim into a dense vector.
-    \item \textbf{Passage encoder:} DistilBERT encodes passages into dense vectors.
-    \item \textbf{Pooling:} mean pooling over token embeddings produces a fixed-size vector.
-\end{itemize}
-
-\subsubsection{Scoring and Retrieval}
-
-We use dot-product similarity between claim and passage embeddings. At inference time, we encode all corpus passages and retrieve top candidates by similarity.
-
-\subsubsection{Training Objective and Configuration}
-
-Each training sample follows a 1--1--N structure: one query, one positive passage, and 10 negatives. We train using a cross-entropy objective over the positive vs.\ negatives. Training configuration (as in the slides):
-\begin{itemize}
-    \item epochs = 2
-    \item learning rate = $2\times10^{-5}$
-    \item weight decay = 0.01
-    \item optimizer = AdamW
-    \item number of negatives per query = 10
-\end{itemize}
+Training uses a 1--1--N sampling strategy: each sample comprises one positive
+passage paired with 10 negative passages. Query and passage embeddings are
+computed separately, then passage embeddings are grouped with their
+corresponding query as (batch size, 1 + N negatives, embedding dimension).
+Similarity scores are computed via batch matrix multiplication, producing scores
+for the positive and 10 negatives. The training objective treats this as a
+classification problem using CrossEntropyLoss, where the target is always index 0
+(the positive passage), forcing the model to assign the highest score to the
+positive while penalizing high scores for negatives. The model is trained for 2
+epochs with a learning rate of $2\times10^{-5}$, weight decay of 0.01, using the
+AdamW optimizer. At inference, all corpus passages are pre-encoded and indexed,
+enabling fast retrieval of top-$K$ candidates through efficient nearest neighbor
+search.
 
 \subsection{Cross-Encoder Reranker}
 
-\subsubsection{Architecture}
+The reranking component is implemented as a DistilBERT-based cross-encoder that
+differs fundamentally from the bi-encoder architecture. While DPR encodes queries
+and passages independently, the cross-encoder jointly tokenizes and encodes
+query-passage pairs, enabling the model to attend across the full sequence and
+capture fine-grained semantic interactions. The \texttt{[CLS]} token embedding
+serves as an aggregate representation, followed by dropout (rate 0.1) for
+regularization and a linear scoring head that produces a relevance logit.
 
-The reranker is a DistilBERT-based cross-encoder:
-\begin{itemize}
-    \item Claim and candidate passage are concatenated and jointly encoded.
-    \item We use the \texttt{[CLS]} embedding as an aggregate representation.
-    \item A dropout layer (0.1) is applied to reduce overfitting.
-    \item A linear scoring head outputs a relevance logit.
-\end{itemize}
+Hard negative mining is central to reranker training. The trained DPR retriever
+is used to retrieve top-$K$ passages for each training claim (retrieval with
+k = N negatives + 5 to account for potential overlap). Passages retrieved with
+high DPR similarity that do not match the ground-truth positive are selected as
+hard negatives. This strategy ensures the reranker learns to distinguish between
+semantically similar passages and genuinely relevant evidence, which is critical
+for fact-checking where a passage may discuss the topic but contradict or fail
+to support the claim.
 
-\subsubsection{Hard Negative Mining and Training}
+Training data consists of (query, positive, negative 1, \ldots, negative $N$)
+tuples. The cross-encoder processes each query-passage pair jointly: queries and
+passages are tokenized together with automatic padding and truncation at the
+batch level. The model is trained for 3 epochs using Binary Cross-Entropy with
+Logits loss with class weighting (pos\_weight = $N$ negatives) to address the
+imbalance of one positive per $N$ negatives. The optimizer is AdamW with
+learning rate $2\times10^{-5}$ and weight decay 0.01.
 
-Hard negatives are candidates retrieved by DPR with high similarity but that are factually incorrect (wrong label/evidence). For each training claim, we take the top 10 DPR candidates and select incorrect ones as hard negatives. Training configuration:
-\begin{itemize}
-    \item epochs = 3
-    \item learning rate = $2\times10^{-5}$
-    \item weight decay = 0.01
-    \item optimizer = AdamW
-    \item loss = Binary Cross-Entropy with Logits
-\end{itemize}
+\subsection{Experiment Pipeline}
 
-\subsection{Fact-Checking Pipeline}
+Four computational approaches are evaluated for scientific fact-checking:
 
-We compare four approaches (as in the slides):
+\textbf{Approach 1: Baseline (LLM-only).} The baseline system prompts the
+language model with only the claim text, without external evidence. The model
+outputs a JSON object containing a \texttt{label} field (True/False) and a
+\texttt{reasoning} field providing brief justification.
 
-\subsubsection{Approach 1: Baseline (LLM-only)}
-The baseline prompts the LLM using only the claim. It outputs a JSON object with:
-\begin{itemize}
-    \item \texttt{label} (True/False)
-    \item \texttt{reasoning} (short justification)
-\end{itemize}
+\textbf{Approach 2: Oracle (LLM + Golden Context).} The oracle configuration
+supplies the language model with the gold-standard evidence passages
+corresponding to the claim. This approach establishes an upper bound on
+achievable performance assuming perfect retrieval.
 
-\subsubsection{Approach 2: Oracle (LLM + Golden Context)}
-The oracle provides the gold evidence passages to the LLM. This represents an upper bound, assuming perfect retrieval.
+\textbf{Approach 3: RAG with DPR.} Candidate passages are retrieved using the
+DPR model, and the top-$K$ passages are provided as context to the language
+model for fact-checking.
 
-\subsubsection{Approach 3: RAG with DPR}
-We retrieve candidates using DPR and provide the top-$K$ passages as context to the LLM.
+\textbf{Approach 4: RAG with DPR + Reranker.} An initial candidate pool is
+retrieved using DPR, then reranked using the cross-encoder. The top-$K$
+reranked passages are provided as context to the language model.
 
-\subsubsection{Approach 4: RAG with DPR + Reranker}
-We retrieve an initial candidate pool with DPR, rerank them with the cross-encoder, and provide the top-$K$ reranked passages to the LLM.
+The language model component utilizes Qwen 2.5 7B (quantized) served locally via
+Ollama. One-shot chain-of-thought prompting is applied, with the prompt
+structure varying by approach: the baseline prompt contains only the claim,
+while oracle and RAG approaches include retrieved evidence as context. The model
+outputs a JSON object with \texttt{label} and \texttt{reasoning} fields for all
+approaches.
 
-\subsubsection{Generator Configuration and Prompting}
-We use Qwen 2.5 7B quantized and served locally via Ollama. We apply one-shot chain-of-thought prompting:
-\begin{itemize}
-    \item prompt without context (baseline)
-    \item prompt with context (oracle and RAG approaches)
-\end{itemize}
-The model output is a JSON object with \texttt{label} and \texttt{reasoning}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\linewidth]{./viz/approaches.jpg}
+\caption{Overview of the four approaches compared in this study: (1) baseline LLM-only, (2) oracle with golden context, (3) RAG with DPR, and (4) RAG with DPR plus reranker.}
+\label{fig:approaches}
+\end{figure}
 
-\subsection{Evaluation}
+\subsection{Evaluation Metrics}
 
-\subsubsection{Retrieval Metric: Mean Reciprocal Rank (MRR)}
+\textbf{Retrieval quality:} assessed using Mean Reciprocal Rank (MRR). For each query,
+the reciprocal of the rank of the first relevant passage is computed, and MRR is
+the average of these values across all queries. MRR is evaluated under different
+candidate pool sizes and context depths.
 
-We evaluate retrieval using Mean Reciprocal Rank (MRR). For each query, we compute the rank of the first relevant passage and average reciprocal ranks across queries. We evaluate MRR under different candidate pool sizes and context depths (as in the results slides).
-
-\subsubsection{End-to-End Metric: Fact-Checking Accuracy}
-
-We evaluate accuracy by comparing the predicted label (True/False) with the ground-truth label in SciFact.
+\textbf{End-to-end fact-checking performance:} measured using accuracy, computed as the
+proportion of predictions matching the ground-truth labels from the SciFact
+dataset.
 
 \section{Results}
 
@@ -194,69 +269,143 @@ This section presents both qualitative and quantitative results. We first analyz
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{viz/llm_retrieval_example_1.jpg}
-\caption{Outputs for a claim under baseline, oracle, DPR, and DPR+reranker. The baseline relies only on parametric knowledge and may hallucinate. Oracle uses gold evidence. DPR retrieval improves grounding, and reranking provides more relevant evidence, improving reasoning quality.}
+\caption{Outputs for a claim under baseline, oracle, DPR, and DPR+reranker.
+  The baseline relies only on parametric knowledge and may hallucinate. Oracle
+  uses gold evidence. DPR retrieval improves grounding, and reranking provides
+  more relevant evidence, improving reasoning quality.}
 \label{fig:ex1}
 \end{figure}
 
-Outputs displayed in Figure~\ref{fig:ex1} highlights the main behavior observed across the dataset. The baseline sometimes produces confident answers with weak evidence. When correct passages are provided (oracle), the reasoning becomes more detailed and aligned with evidence. In the RAG settings, the quality of the retrieved context directly affects correctness: when retrieval includes relevant evidence, the model's reasoning becomes more concrete; when retrieval includes partially relevant or misleading passages, the model can be pushed toward the wrong label.
+Outputs displayed in Figure~\ref{fig:ex1} highlights the main behavior observed
+across the dataset. The baseline sometimes produces confident answers with weak
+evidence. When correct passages are provided (oracle), the reasoning becomes
+more detailed and aligned with evidence. In the RAG settings, the quality of the
+retrieved context directly affects correctness: when retrieval includes relevant
+evidence, the model's reasoning becomes more concrete; when retrieval includes
+partially relevant or misleading passages, the model can be pushed toward the
+wrong label.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{viz/llm_retrieval_example_2.jpg}
-\caption{Outputs for a claim about CO\textsubscript{2} reduction. The baseline may guess correctly but with generic reasoning. RAG improves evidence-based explanation, especially when reranking selects passages closer to the claim semantics.}
+\caption{Outputs for a claim about CO\textsubscript{2} reduction. The baseline
+  may guess correctly but with generic reasoning. RAG improves evidence-based
+  explanation, especially when reranking selects passages closer to the claim
+  semantics.}
 \label{fig:ex2}
 \end{figure}
 
-In Figure~\ref{fig:ex2} outputs, it shows that even when the baseline predicts correctly, it often produces generic reasoning. With RAG, the reasoning is more grounded, because the model can point to retrieved sentences. This supports the core motivation of RAG: reducing hallucination and improving transparency \cite{lewis2020retrieval}.
+In Figure~\ref{fig:ex2} outputs, it shows that even when the baseline predicts
+correctly, it often produces generic reasoning. With RAG, the reasoning is more
+grounded, because the model can point to retrieved sentences. This supports the
+core motivation of RAG: reducing hallucination and improving transparency
+\cite{lewis2020retrieval}.
 
 \subsection{Retrieval Performance (MRR)}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{viz/mrr_results.png}
-\caption{MRR results for DPR vs.\ DPR with reranker under different candidate pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR across settings.}
+\caption{MRR results for DPR vs.\ DPR with reranker under different candidate
+  pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR
+  across settings.}
 \label{fig:mrr1}
 \end{figure}
 
-Figure~\ref{fig:mrr1} shows that DPR with reranking achieves higher MRR than DPR alone for all candidate pool sizes. This is expected: the DPR bi-encoder is efficient but can retrieve semantically similar passages that are not the best evidence. The reranker (cross-encoder) captures richer interactions between claim and passage and improves ranking.
+Figure~\ref{fig:mrr1} shows that DPR with reranking achieves higher MRR than DPR
+alone for all candidate pool sizes. This is expected: the DPR bi-encoder is
+efficient but can retrieve semantically similar passages that are not the best
+evidence. The reranker (cross-encoder) captures richer interactions between claim
+and passage and improves ranking.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{viz/mrr_dpr_vs_dpr_reranker.png}
-\caption{Left: DPR-only MRR increases with context size. Right: reranking improves MRR further as candidate pool increases. Larger candidate pools allow better reranking but increase computation.}
+\caption{Left: DPR-only MRR increases with context size. Right: reranking
+  improves MRR further as candidate pool increases. Larger candidate pools allow
+  better reranking but increase computation.}
 \label{fig:mrr2}
 \end{figure}
 
-Figure~\ref{fig:mrr2} helps interpret the trend: increasing the number of candidates generally increases MRR with reranking because the reranker has more options to choose from. This matches the standard view that retrieval is a recall-focused step and reranking is a precision-focused step.
+Figure~\ref{fig:mrr2} helps interpret the trend: increasing the number of
+candidates generally increases MRR with reranking because the reranker has more
+options to choose from. This matches the standard view that retrieval is a
+recall-focused step and reranking is a precision-focused step.
 
 \subsection{End-to-End Accuracy}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{viz/llm_accuracy.png}
-\caption{Fact-checking accuracy by approach and retrieval configuration. Oracle is the upper bound. RAG improves over baseline when retrieved evidence is correct; reranking helps by selecting better contexts.}
+\caption{Fact-checking accuracy by approach and retrieval configuration. Oracle
+  is the upper bound. RAG improves over baseline when retrieved evidence is
+  correct; reranking helps by selecting better contexts.}
 \label{fig:acc}
 \end{figure}
 
-Figure~\ref{fig:acc} shows that the oracle configuration achieves the highest accuracy, confirming that correct evidence leads to strong downstream performance. The baseline performance is relatively high, suggesting that the LLM has strong general scientific knowledge, but it is not always reliable. The RAG approaches improve grounding, but they can sometimes reduce accuracy when wrong contexts are retrieved and passed to the generator. This is also mentioned in the slides as a limitation: ``RAG can compromise results when wrong contexts are passed''.
+Figure~\ref{fig:acc} shows that the oracle configuration achieves the highest
+accuracy, confirming that correct evidence leads to strong downstream
+performance. The baseline performance is relatively high, suggesting that the LLM
+has strong general scientific knowledge, but it is not always reliable. The RAG
+approaches improve grounding, but they can sometimes reduce accuracy when wrong
+contexts are retrieved and passed to the generator. This is also mentioned in the
+slides as a limitation: ``RAG can compromise results when wrong contexts are
+passed''.
 
-Overall, the best configuration combines DPR and reranking, showing that improving retrieval quality improves end-to-end correctness. This is consistent with DPR literature, where stronger retrieval precision is associated with improved downstream QA accuracy \cite{karpukhin2020dense}, and with the RAG motivation of reducing hallucination by providing evidence \cite{lewis2020retrieval}.
+Overall, the best configuration combines DPR and reranking, showing that
+improving retrieval quality improves end-to-end correctness. This is consistent
+with DPR literature, where stronger retrieval precision is associated with
+improved downstream QA accuracy \cite{karpukhin2020dense}, and with the RAG
+motivation of reducing hallucination by providing evidence \cite{lewis2020retrieval}.
 
 \section{Discussion}
 
-The results show that adding a reranking step consistently improves retrieval quality, as reflected by higher MRR values across all tested configurations. This improvement is expected because the cross-encoder jointly processes the claim and the passage, allowing it to model fine-grained semantic interactions that bi-encoders cannot capture. As a result, the system is more likely to select passages that are not only semantically related, but also directly relevant as evidence for the claim.
+The results show that adding a reranking step consistently improves retrieval
+quality, as reflected by higher MRR values across all tested configurations. This
+improvement is expected because the cross-encoder jointly processes the claim and
+the passage, allowing it to model fine-grained semantic interactions that
+bi-encoders cannot capture. As a result, the system is more likely to select
+passages that are not only semantically related, but also directly relevant as
+evidence for the claim.
 
-The experiments also highlight that retrieval improves factual grounding but can negatively affect performance when incorrect or misleading passages are retrieved. While RAG encourages the language model to rely on explicit evidence rather than internal assumptions, it also makes the model sensitive to retrieval errors. When the retrieved context is incorrect, the model may follow that evidence and produce the wrong label. This behavior is consistent with previous observations that errors in the retrieval stage can propagate to the generation stage and harm downstream performance \cite{lewis2020retrieval}. The oracle results illustrate the upper bound of the system when retrieval is perfect.
+The experiments also highlight that retrieval improves factual grounding but can
+negatively affect performance when incorrect or misleading passages are
+retrieved. While RAG encourages the language model to rely on explicit evidence
+rather than internal assumptions, it also makes the model sensitive to retrieval
+errors. When the retrieved context is incorrect, the model may follow that
+evidence and produce the wrong label. This behavior is consistent with previous
+observations that errors in the retrieval stage can propagate to the generation
+stage and harm downstream performance \cite{lewis2020retrieval}. The oracle
+results illustrate the upper bound of the system when retrieval is perfect.
 
-The relatively strong performance of the baseline model suggests that modern language models already contain a large amount of general scientific knowledge in their parameters. This supports the view of language models as implicit knowledge bases, capable of answering many factual questions without external information. However, this internal knowledge is static and not guaranteed to be accurate or complete, especially for specialized or less common claims. This motivates the use of retrieval-based grounding to improve reliability and transparency.
+The relatively strong performance of the baseline model suggests that modern
+language models already contain a large amount of general scientific knowledge in
+their parameters. This supports the view of language models as implicit knowledge
+bases, capable of answering many factual questions without external information.
+However, this internal knowledge is static and not guaranteed to be accurate or
+complete, especially for specialized or less common claims. This motivates the
+use of retrieval-based grounding to improve reliability and transparency.
 
-Finally, the use of DistilBERT as the backbone for both the retriever and the reranker enables efficient training and inference while maintaining strong representational power \cite{sanh2020distilbert}. The main computational trade-off lies in the reranking step: increasing the size of the candidate pool improves ranking quality but also increases inference cost, since each candidate must be jointly encoded with the claim.
+Finally, the use of DistilBERT as the backbone for both the retriever and the
+reranker enables efficient training and inference while maintaining strong
+representational power \cite{sanh2020distilbert}. The main computational
+trade-off lies in the reranking step: increasing the size of the candidate pool
+improves ranking quality but also increases inference cost, since each candidate
+must be jointly encoded with the claim.
 
 \section{Conclusion}
 
-We implemented and evaluated a RAG pipeline for scientific fact-checking on SciFact. We compared baseline LLM-only, oracle with golden evidence, RAG with DPR, and RAG with DPR plus a reranker. The results show that reranking improves retrieval quality (higher MRR) and generally improves end-to-end accuracy by providing better evidence to the generator. However, incorrect retrieval can still harm results, highlighting the importance of reliable evidence selection.
+We implemented and evaluated a RAG pipeline for scientific fact-checking on
+SciFact. We compared baseline LLM-only, oracle with golden evidence, RAG with
+DPR, and RAG with DPR plus a reranker. The results show that reranking improves
+retrieval quality (higher MRR) and generally improves end-to-end accuracy by
+providing better evidence to the generator. However, incorrect retrieval can
+still harm results, highlighting the importance of reliable evidence selection.
 
-Possible improvements (as also suggested in the slides) include: applying a similarity threshold to limit context depth, training DPR and reranker for more epochs, improving hard negative selection for retriever training, and comparing different generator models.
+Possible improvements (as also suggested in the slides) include: applying a
+similarity threshold to limit context depth, training DPR and reranker for more
+epochs, improving hard negative selection for retriever training, and comparing
+different generator models.
 
 \bibliography{../references}
 \bibliographystyle{plainnat}
@@ -267,11 +416,15 @@ Possible improvements (as also suggested in the slides) include: applying a simi
 
 \subsection{Hardware and Software}
 
-The experiments were conducted using Python with PyTorch. Main libraries include Hugging Face Datasets, Sentence-Transformers, and Ollama for serving the LLM locally.
+The experiments were conducted using Python with PyTorch. Main libraries include
+Hugging Face Datasets, Sentence-Transformers, and Ollama for serving the LLM
+locally.
 
 \subsection{Reproducibility}
 
-The training and evaluation code is implemented in Jupyter notebooks with fixed random seeds and explicit hyperparameter settings for retriever and reranker training.
+The training and evaluation code is implemented in Jupyter notebooks with fixed
+random seeds and explicit hyperparameter settings for retriever and reranker
+training.
 
 \end{document}
 
