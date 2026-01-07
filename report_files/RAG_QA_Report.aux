@@ -5,52 +5,46 @@
 \citation{lewis2020retrieval}
 \citation{karpukhin2020dense}
 \citation{karpukhin2020dense}
+\citation{wadden2020fact}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Problem Statement and Objectives}{1}{subsection.1.1}\protected@file@percent }
+\citation{lewis2020retrieval}
+\citation{karpukhin2020dense}
+\citation{karpukhin2020dense}
+\citation{sanh2020distilbert}
 \citation{wadden2020fact}
-\citation{lewis2020retrieval}
-\citation{karpukhin2020dense}
-\citation{karpukhin2020dense}
-\citation{sanh2020distilbert}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Dataset and Key Concepts}{2}{subsection.1.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces SciFact dataset raw schema and after data preprocessing}}{2}{figure.1}\protected@file@percent }
-\newlabel{fig:dataset}{{1}{2}{SciFact dataset raw schema and after data preprocessing}{figure.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Preprocessing and Tokenization}{2}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Dense Passage Retrieval (DPR) Model}{2}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Cross-Encoder Reranker}{3}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Experiment Pipeline}{3}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Evaluation Metrics}{3}{subsection.3.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the four approaches compared in this study: (1) baseline LLM-only, (2) oracle with golden context, (3) RAG with DPR, and (4) RAG with DPR plus reranker.}}{4}{figure.2}\protected@file@percent }
-\newlabel{fig:approaches}{{2}{4}{Overview of the four approaches compared in this study: (1) baseline LLM-only, (2) oracle with golden context, (3) RAG with DPR, and (4) RAG with DPR plus reranker}{figure.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Qualitative Examples}{4}{subsection.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Example 1: Outputs for a claim under the four approaches baseline, oracle, DPR, and DPR+reranker.}}{4}{figure.3}\protected@file@percent }
-\newlabel{fig:ex1}{{3}{4}{Example 1: Outputs for a claim under the four approaches baseline, oracle, DPR, and DPR+reranker}{figure.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Example 2: Outputs for a claim under the four approaches baseline, oracle, DPR, and DPR+reranker.}}{4}{figure.4}\protected@file@percent }
-\newlabel{fig:ex2}{{4}{4}{Example 2: Outputs for a claim under the four approaches baseline, oracle, DPR, and DPR+reranker}{figure.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Retrieval Performance (MRR)}{4}{subsection.4.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces MRR results for DPR vs.\ DPR with reranker under different candidate pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR across settings.}}{4}{figure.5}\protected@file@percent }
-\newlabel{fig:mrr1}{{5}{4}{MRR results for DPR vs.\ DPR with reranker under different candidate pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR across settings}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces SciFact dataset raw schema and after data preprocessing}}{2}{figure.caption.2}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:dataset}{{1}{2}{SciFact dataset raw schema and after data preprocessing}{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Methodology}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Preprocessing and Tokenization}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Dense Passage Retrieval Model}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Cross-Encoder Reranker}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Experiment Pipeline}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Evaluation Metrics}{3}{subsection.2.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the four approaches compared in this study: (1) baseline LLM-only, (2) oracle with golden context, (3) RAG with DPR, and (4) RAG with DPR plus reranker.}}{3}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:approaches}{{2}{3}{Overview of the four approaches compared in this study: (1) baseline LLM-only, (2) oracle with golden context, (3) RAG with DPR, and (4) RAG with DPR plus reranker}{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{3}{section.3}\protected@file@percent }
 \citation{karpukhin2020dense}
 \citation{lewis2020retrieval}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Example: Outputs for a claim under the four approaches baseline, oracle, DPR, and DPR+reranker.}}{4}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:ex2}{{3}{4}{Example: Outputs for a claim under the four approaches baseline, oracle, DPR, and DPR+reranker}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Retrieval Performance (MRR)}{4}{subsection.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces MRR results for DPR vs.\ DPR with reranker under different candidate pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR across settings.}}{4}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:mrr1}{{4}{4}{MRR results for DPR vs.\ DPR with reranker under different candidate pool sizes and context depths (3, 5, 10). Reranking consistently increases MRR across settings}{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Left: DPR-only MRR increases with context size. Right: reranking improves MRR further as candidate pool increases. Larger candidate pools allow better reranking but increase computation.}}{4}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:mrr2}{{5}{4}{Left: DPR-only MRR increases with context size. Right: reranking improves MRR further as candidate pool increases. Larger candidate pools allow better reranking but increase computation}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Fact checking Accuracy}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Fact-checking accuracy by approach and retrieval configuration.}}{4}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:acc}{{6}{4}{Fact-checking accuracy by approach and retrieval configuration}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion and Conclusions}{4}{section.4}\protected@file@percent }
 \citation{lewis2020retrieval}
 \citation{sanh2020distilbert}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Left: DPR-only MRR increases with context size. Right: reranking improves MRR further as candidate pool increases. Larger candidate pools allow better reranking but increase computation.}}{5}{figure.6}\protected@file@percent }
-\newlabel{fig:mrr2}{{6}{5}{Left: DPR-only MRR increases with context size. Right: reranking improves MRR further as candidate pool increases. Larger candidate pools allow better reranking but increase computation}{figure.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Fact checking Accuracy}{5}{subsection.4.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Fact-checking accuracy by approach and retrieval configuration.}}{5}{figure.7}\protected@file@percent }
-\newlabel{fig:acc}{{7}{5}{Fact-checking accuracy by approach and retrieval configuration}{figure.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
 \bibdata{../references}
 \bibcite{karpukhin2020dense}{{1}{2020}{{Karpukhin et~al.}}{{Karpukhin, Oguz, Min, Lewis, Wu, Schwenk, Schwab, and Riedel}}}
 \bibcite{lewis2020retrieval}{{2}{2020}{{Lewis et~al.}}{{Lewis, Perez, Piktus, Schwenk, Schwab, Kiela, and Riedel}}}
 \bibcite{sanh2020distilbert}{{3}{2020}{{Sanh et~al.}}{{Sanh, Debut, Chaumond, and Wolf}}}
 \bibcite{wadden2020fact}{{4}{2020}{{Wadden et~al.}}{{Wadden, Lin, Lo, Wang, van Zuylen, Cohan, and Hajishirzi}}}
 \bibstyle{plainnat}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A}Implementation Details}{6}{appendix.A}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Hardware and Software}{6}{subsection.A.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Reproducibility}{6}{subsection.A.2}\protected@file@percent }
-\gdef \@abspage@last{6}
+\gdef \@abspage@last{5}
